@@ -1,0 +1,82 @@
+# behat.yml
+default:
+  paths:
+    features: 'features'
+  extensions:
+    Behat\MinkExtension\Extension:
+      #default_session: goutte
+      javascript_session: zombie
+      browser_name: firefox
+      base_url: http://standard
+      goutte:
+        guzzle_parameters:
+            ssl.certificate_authority: false
+
+# Testing Profiles #
+
+# Separate profile for Drupal extension testing.
+drupal:
+  context:
+    parameters:
+      bootstrap: %behat.paths.features%/bootstrap
+      drupal_context: DrupalFeatureContext
+  extensions:
+    Drupal\DrupalExtension\Extension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/root/Sites/standard/htdocs'
+      drush:
+        alias: 'std'
+
+# Separate profile for testing Zombie.js separetely
+zombie:
+  paths:
+    bootstrap: %behat.paths.features%/bootstrap_test_zombie
+    zombie_context: ZombieFeatureContext
+  extensions:
+    Behat\MinkExtension\Extension:
+      zombie:
+        node_modules_path: '/usr/lib/node_modules/'
+        auto_server: false
+
+# Combined profile for Drupal and Zombie testing.
+std:
+  context:
+
+    # Parameters is passed as an argument to the main context.
+    # Main context is automatically FeatureContext.
+    # Contains custom variables indicating which contexts we want to load for
+    # our tests.
+    parameters:
+
+      # Extends BehatContext, used for front-end testing with Zombie.js.
+      # @see http://zombie.labnotes.org
+      zombie_context: ZombieFeatureContext
+
+      # Extends DrupalContext, used for interacting with Drupal, creating test
+      # content, and verifying application state using different user roles.
+      # @see https://www.drupal.org/project/drupalextension
+      drupal_context: DrupalFeatureContext
+
+  # Directory containing context files.
+  # All files found here are automatically autoloaded via Composer.
+  paths:
+    bootstrap: %behat.paths.features%/bootstrap
+
+  extensions:
+
+    # Required by the behat Drupal Extension.
+    Drupal\DrupalExtension\Extension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/root/Sites/standard/htdocs'
+      drush:
+        alias: 'std'
+
+    # Required by Zombie.js.
+    Behat\MinkExtension\Extension:
+      zombie:
+        node_modules_path: '/usr/lib/node_modules/'
+        auto_server: false
