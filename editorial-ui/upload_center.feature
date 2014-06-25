@@ -19,32 +19,33 @@ Background:
     And I click on "search content" under the "article images" field
     And I click on "Create and Reference" tab
     And I click on "Choose files"
-    And I select a file to upload
+    And I upload an image titled "obama.jpg"
     And I click on the "Upload" button
+    And The image titled "obama.jpg" is staged
 
-# Test basic upload functionality.
-Scenario: Upload image
-  # todo: specify the image name
-  Given I upload an image
-  # todo: verify the specified image shows up
-  Then The upload modal shows the image
-
-Scenario: Associate uploaded image with entity
+Scenario: Associate staged image with entity
   When I click on the "Save" button
   # Then the upload modal should: close | show uploaded images
-  Then The image should be associated with the entity
+  # And I click on the "close" or "save" button
+  Then The "obama.jpg" image should be associated with the entity
 
-Scenario: Upload and delete image without associating it to an entity
+Scenario: Delete staged image without associating it to an entity
   When I click on the "Delete" button
   Then The upload center modal should show up
 
-Scenario: Cancel upload operation
-  When I click on the "Delete" button
-  Then The upload center modal should show up
-    Given I click on the "reference" tab
-    Then The cancelled image should not show up on search
-    Given I click on the "Close" button
-    Then The cancelled image should not show up on the entity
+Scenario: Staged images do not show up on search when cancelled
+  Given I click on the "Delete" button
+  And The upload center modal shows up
+  When I click on the "reference" tab
+  Then The cancelled image should not show up on search
+
+Scenario: Staged images do not show up on search when cancelled
+  Given I click on the "Delete" button
+  And The upload center modal shows up
+  And I click on the "Close" button
+  Then The cancelled image should not be associated with an entity
+
+
 
 Scenario: Upload image via drag and drop
   # @todo currently not working
