@@ -1,3 +1,7 @@
+LAST WORKING INSTALLATION
+
+# Composer.json (June 24, 2014):
+
 {
   "minimum-stability": "dev",
   "require": {
@@ -17,3 +21,11 @@
     "bin-dir": "bin/"
   }
 }
+
+# Install log
+# <checkout directory>/composer update
+# :
+
+
+
+

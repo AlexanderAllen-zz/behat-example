@@ -22,3 +22,20 @@ Functionality:
 - Behat uses "contexts" - PHP classes - to define and configure the rules to
   be executed. This project comes with it's own contexts included (required).
 - You can extend the provided contexts at any time if need be.
+
+Tips:
+- Behat scans recursively the specified "features" directory.
+- Different versions of drupal/drupal-extension require specific versions of
+  behat.
+- Composer packages sometimes throw themselves into a circular dependency loop -
+  an infinite loop caused by the version requirements of each package. To avoid
+  this infinite execution loop we use the version alias functionality mentioned
+  in: https://getcomposer.org/doc/articles/troubleshooting.md#need-to-override-a-package-version
+
+Installation:
+- Assuming the project has been checked out to /home/<yourusername>/behat
+- SSH into your virtualized local lamp stack
+- Assuming your lamp stack has composer installed
+- Change directory into <shared mount>/.../[home/][<yourusername>/]behat
+- Run composer update. This should all install all the dependencies listed in
+  composer.json.
