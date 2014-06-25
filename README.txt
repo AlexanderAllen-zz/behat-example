@@ -39,3 +39,45 @@ Installation:
 - Change directory into <shared mount>/.../[home/][<yourusername>/]behat
 - Run composer update. This should all install all the dependencies listed in
   composer.json.
+
+Usage:
+- Feature files are located in the "features" directory.
+- The "features" directory is scanned recursively by behat - you can organize
+  your feature in as many folders at it makes sense - they will be found.
+- While behat features (features/*.feature files) are written in Gherkin (see
+  reference section below), the steps that are actually executed, i.e., the
+  actual interaction that happens with Drupal or any other system (doesn't have
+  to be Drupal) are written in PHP code.
+- Custom steps are defined in custom code, *.php files located in the "boostrap"
+  directory. You can write your own steps at any time.
+- Some steps are provided by other projects such as the "Drupal Extension".
+- Drupal Extension is a Drupal.org project, but is not a module - it simply
+  provides a context that you can extend.
+- You extend the Drupal Extension-provided context in order to inherit common
+  Drupal interaction steps such as: create content, log in, click on things in
+  the page (i.e., simulate a Drupal user with different roles).
+- This project uses both the Drupal Extension, and custom steps where neccesary.
+- What Context is used is normally defined by "profiles" found on the yaml file.
+- You can specify which "profile" to use for your tests, and therefore which
+  steps are available to your test suites.
+
+Reference/Bibliography:
+- DRUPALCON AUSTIN PRESENTATION
+  # Please see this first if you have never work with Behat in order to get
+  # familiarized!
+  https://austin2014.drupal.org/session/user-personas-testing-project-managers-journey-towards-behat
+
+- Gherkin syntax:
+  https://github.com/cucumber/cucumber/wiki/Gherkin
+  https://github.com/cucumber/cucumber/wiki/Feature-Introduction
+  http://pivotallabs.com/well-formed-stories/
+  http://docs.behat.org/guides/1.gherkin.html
+  http://www.strongandagile.co.uk/index.php/what-makes-a-good-user-story/
+- Composer:
+  https://getcomposer.org/doc/00-intro.md
+  https://getcomposer.org/doc/
+- Contexts:
+  http://docs.behat.org/guides/7.config.html#Context
+  http://docs.behat.org/guides/4.context.html
+- behat.yml
+  http://docs.behat.org/guides/7.config.html
