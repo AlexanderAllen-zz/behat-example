@@ -24,10 +24,16 @@ Background:
     When I click "Create and Reference"
     When I click "Choose files"
     # And I upload an image titled "obama.jpg"
-    When I attach the file "obama.jpg"
+    # @todo will need custom step here, research upload form interation
+  # When I attach the file "imgs/looks.jpg" to "ImageID"
+    When I attach the file "obama.jpg" to "multiUpload"
+    #And I click on the "Open" button
+    When I press the "submitHandler" button
 
-    And I click on the "Open" button
-    And The image titled "obama.jpg" is staged
+    #And The image titled "obama.jpg" is staged
+    Then the "title" field should contain "obama.jpg"
+    #Checks, that form field with specified id|name|label|value has specified value.
+
 
 Scenario: Associate staged image with entity
   When I click on the "Save" button
