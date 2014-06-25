@@ -124,3 +124,452 @@ Given /^(?:|I )am on "(?P<page>[^"]+)"$/
  Then /^print current URL$/
  Then /^print last response$/
  Then /^show last response$/
+
+Document steps with their respectives contexts:
+
+[root@local behat]# bin/behat --profile std -di
+ Then /^Tell the browser to go back$/
+    - Tests the Zombie.js browser functionality.
+    # ZombieFeatureContext::tellTheBrowserToGoBack()
+
+ Then /^Tell the browser to go forward$/
+    - Tests the Zombie.js browser functionality.
+    # ZombieFeatureContext::tellTheBrowserToGoForward()
+
+Given /^Print the page title$/
+    - Tests finding an HTML element.
+    # ZombieFeatureContext::printThePageTitle()
+
+Given /^Assert that JavaScript variable "([^"]*)" exists$/
+    - Tests a JavaScript assertion.
+    # ZombieFeatureContext::assertThatJavascriptVariableExists()
+
+Given /^the user role "([^"]*)"$/
+    # ZombieFeatureContext::theUserRole()
+
+Given /^The following environments:$/
+    # ZombieFeatureContext::theFollowingEnvironments()
+
+ Then /^these variables must exist:$/
+    # ZombieFeatureContext::theseVariablesMustExist()
+
+Given /^JQuery is available$/
+    - Verify that jQuery is available so we can more easily perform our tests.
+    # DrupalFeatureContext::jqueryIsAvailable()
+
+ Then /^These JavaScript objects are present:$/
+    - Validate JavaScript environment.
+    # DrupalFeatureContext::theseJavascriptObjectsArePresent()
+
+Given /^(?:that I|I) am at "(?P[^"]*)"$/
+    - Visit a given path, and additionally check for HTTP response code 200.
+    # DrupalFeatureContext::assertAtPath()
+
+ When /^I visit "(?P[^"]*)"$/
+    # DrupalFeatureContext::assertVisit()
+
+ When /^I click "(?P<link>[^"]*)"$/
+    # DrupalFeatureContext::assertClick()
+
+Given /^for "(?P<field>[^"]*)" I enter "(?P<value>[^"]*)"$/
+    # DrupalFeatureContext::assertEnterField()
+
+Given /^I enter "(?P<value>[^"]*)" for "(?P<field>[^"]*)"$/
+    # DrupalFeatureContext::assertEnterField()
+
+Given /^I wait for AJAX to finish$/
+    - Wait for AJAX to finish.
+    # DrupalFeatureContext::iWaitForAjaxToFinish()
+
+ When /^(?:|I )press "(?P<button>(?:[^"]|\\")*)"$/
+    - Presses button with specified id|name|title|alt|value.
+    # DrupalFeatureContext::pressButton()
+
+ When /^(?:|I )press the "(?P<button>[^"]*)" button$/
+    - Presses button with specified id|name|title|alt|value.
+    # DrupalFeatureContext::pressButton()
+
+Given /^(?:|I )press the "([^"]*)" key in the "([^"]*)" field$/
+    # DrupalFeatureContext::pressKey()
+
+ Then /^I should see the link "(?P<link>[^"]*)"$/
+    # DrupalFeatureContext::assertLinkVisible()
+
+ Then /^I should not see the link "(?P<link>[^"]*)"$/
+    # DrupalFeatureContext::assertNotLinkVisible()
+
+ Then /^I (?:|should )see the heading "(?P<heading>[^"]*)"$/
+    # DrupalFeatureContext::assertHeading()
+
+ Then /^I (?:|should )not see the heading "(?P<heading>[^"]*)"$/
+    # DrupalFeatureContext::assertNotHeading()
+
+ Then /^I should see the heading "(?P<heading>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    - Find a heading in a specific region.
+    # DrupalFeatureContext::assertRegionHeading()
+
+ Then /^I should see the "(?P<heading>[^"]*)" heading in the "(?P<region>[^"]*)"(?:| region)$/
+    - Find a heading in a specific region.
+    # DrupalFeatureContext::assertRegionHeading()
+
+ When /^I (?:follow|click) "(?P<link>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    # DrupalFeatureContext::assertRegionLinkFollow()
+
+ Then /^I should see the link "(?P<link>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    # DrupalFeatureContext::assertLinkRegion()
+
+ Then /^I should not see the link "(?P<link>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    # DrupalFeatureContext::assertNotLinkRegion()
+
+ Then /^I should see (?:the text |)"(?P<text>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    # DrupalFeatureContext::assertRegionText()
+
+ Then /^I should not see (?:the text |)"(?P<text>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    # DrupalFeatureContext::assertNotRegionText()
+
+Given /^I press "(?P<button>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    - Checks, if a button with id|name|title|alt|value exists or not and pressess the same
+    # DrupalFeatureContext::assertRegionPressButton()
+
+Given /^(?:|I )fill in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    - Fills in a form field with id|name|title|alt|value in the specified region.
+    # DrupalFeatureContext::regionFillField()
+
+Given /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)" in the "(?P<region>[^"]*)"(?:| region)$/
+    - Fills in a form field with id|name|title|alt|value in the specified region.
+    # DrupalFeatureContext::regionFillField()
+
+ Then /^(?:I|I should) see the text "(?P<text>[^"]*)"$/
+    # DrupalFeatureContext::assertTextVisible()
+
+ Then /^I should not see the text "(?P<text>[^"]*)"$/
+    # DrupalFeatureContext::assertNotTextVisible()
+
+ Then /^I should get a "(?P<code>[^"]*)" HTTP response$/
+    # DrupalFeatureContext::assertHttpResponse()
+
+ Then /^I should not get a "(?P<code>[^"]*)" HTTP response$/
+    # DrupalFeatureContext::assertNotHttpResponse()
+
+Given /^I check the box "(?P<checkbox>[^"]*)"$/
+    # DrupalFeatureContext::assertCheckBox()
+
+Given /^I uncheck the box "(?P<checkbox>[^"]*)"$/
+    # DrupalFeatureContext::assertUncheckBox()
+
+ When /^I select the radio button "(?P<label>[^"]*)" with the id "(?P<id>[^"]*)"$/
+    # DrupalFeatureContext::assertSelectRadioById()
+
+ When /^I select the radio button "(?P<label>[^"]*)"$/
+    # DrupalFeatureContext::assertSelectRadioById()
+
+Given /^I am an anonymous user$/
+    # DrupalFeatureContext::assertAnonymousUser()
+
+Given /^I am not logged in$/
+    # DrupalFeatureContext::assertAnonymousUser()
+
+Given /^I am logged in as a user with the "(?P<role>[^"]*)" role$/
+    - Creates and authenticates a user with the given role via Drush.
+    # DrupalFeatureContext::assertAuthenticatedByRole()
+
+Given /^I am logged in as "(?P<name>[^"]*)"$/
+    # DrupalFeatureContext::assertLoggedInByName()
+
+Given /^I am logged in as a user with the "(?P<permission>[^"]*)" permission(?:|s)$/
+    # DrupalFeatureContext::assertLoggedInWithPermissions()
+
+Given /^I click "(?P<link>[^"]*)" in the "(?P<row_text>[^"]*)" row$/
+    - Attempts to find a link in a table row containing giving text. This is for
+    # DrupalFeatureContext::assertClickInTableRow()
+
+Given /^the cache has been cleared$/
+    # DrupalFeatureContext::assertCacheClear()
+
+Given /^I run cron$/
+    # DrupalFeatureContext::assertCron()
+
+Given /^I am viewing (?:a|an) "(?P<type>[^"]*)" node with the title "(?P<title>[^"]*)"$/
+    # DrupalFeatureContext::createNode()
+
+Given /^(?:a|an) "(?P<type>[^"]*)" node with the title "(?P<title>[^"]*)"$/
+    # DrupalFeatureContext::createNode()
+
+Given /^I am viewing my "(?P<type>[^"]*)" node with the title "(?P<title>[^"]*)"$/
+    # DrupalFeatureContext::createMyNode()
+
+Given /^"(?P<type>[^"]*)" nodes:$/
+    # DrupalFeatureContext::createNodes()
+
+Given /^I am viewing (?:a|an) "(?P<type>[^"]*)" node:$/
+    # DrupalFeatureContext::assertViewingNode()
+
+ Then /^I should be able to edit (?:a|an) "([^"]*)" node$/
+    - Asserts that a given node type is editable.
+    # DrupalFeatureContext::assertEditNodeOfType()
+
+Given /^I am viewing (?:a|an) "(?P<vocabulary>[^"]*)" term with the name "(?P<name>[^"]*)"$/
+    # DrupalFeatureContext::createTerm()
+
+Given /^(?:a|an) "(?P<vocabulary>[^"]*)" term with the name "(?P<name>[^"]*)"$/
+    # DrupalFeatureContext::createTerm()
+
+Given /^users:$/
+    - Creates multiple users.
+    # DrupalFeatureContext::createUsers()
+
+Given /^"(?P<vocabulary>[^"]*)" terms:$/
+    # DrupalFeatureContext::createTerms()
+
+ Then /^I should see the error message(?:| containing) "([^"]*)"$/
+    - Checks if the current page contains the given error message
+    # DrupalFeatureContext::assertErrorVisible()
+
+ Then /^I should see the following <error messages>$/
+    - Checks if the current page contains the given set of error messages
+    # DrupalFeatureContext::assertMultipleErrors()
+
+Given /^I should not see the error message(?:| containing) "([^"]*)"$/
+    - Checks if the current page does not contain the given error message
+    # DrupalFeatureContext::assertNotErrorVisible()
+
+ Then /^I should not see the following <error messages>$/
+    - Checks if the current page does not contain the given set error messages
+    # DrupalFeatureContext::assertNotMultipleErrors()
+
+ Then /^I should see the success message(?:| containing) "([^"]*)"$/
+    - Checks if the current page contains the given success message
+    # DrupalFeatureContext::assertSuccessMessage()
+
+ Then /^I should see the following <success messages>$/
+    - Checks if the current page contains the given set of success messages
+    # DrupalFeatureContext::assertMultipleSuccessMessage()
+
+Given /^I should not see the success message(?:| containing) "([^"]*)"$/
+    - Checks if the current page does not contain the given set of success message
+    # DrupalFeatureContext::assertNotSuccessMessage()
+
+ Then /^I should not see the following <success messages>$/
+    - Checks if the current page does not contain the given set of success messages
+    # DrupalFeatureContext::assertNotMultipleSuccessMessage()
+
+ Then /^I should see the warning message(?:| containing) "([^"]*)"$/
+    - Checks if the current page contains the given warning message
+    # DrupalFeatureContext::assertWarningMessage()
+
+ Then /^I should see the following <warning messages>$/
+    - Checks if the current page contains the given set of warning messages
+    # DrupalFeatureContext::assertMultipleWarningMessage()
+
+Given /^I should not see the warning message(?:| containing) "([^"]*)"$/
+    - Checks if the current page does not contain the given set of warning message
+    # DrupalFeatureContext::assertNotWarningMessage()
+
+ Then /^I should not see the following <warning messages>$/
+    - Checks if the current page does not contain the given set of warning messages
+    # DrupalFeatureContext::assertNotMultipleWarningMessage()
+
+ Then /^I should see the message(?:| containing) "([^"]*)"$/
+    - Checks if the current page contain the given message
+    # DrupalFeatureContext::assertMessage()
+
+ Then /^I should not see the message(?:| containing) "([^"]*)"$/
+    - Checks if the current page does not contain the given message
+    # DrupalFeatureContext::assertNotMessage()
+
+Given /^I run drush "(?P<command>[^"]*)"$/
+    # DrupalFeatureContext::assertDrushCommand()
+
+Given /^I run drush "(?P<command>[^"]*)" "(?P<arguments>(?:[^"]|\\")*)"$/
+    # DrupalFeatureContext::assertDrushCommandWithArgument()
+
+ Then /^drush output should contain "(?P<output>[^"]*)"$/
+    # DrupalFeatureContext::assertDrushOutput()
+
+ Then /^drush output should not contain "(?P<output>[^"]*)"$/
+    # DrupalFeatureContext::drushOutputShouldNotContain()
+
+ Then /^(?:|I )break$/
+    - Pauses the scenario until the user presses a key. Useful when debugging a scenario.
+    # DrupalFeatureContext::iPutABreakpoint()
+
+Given /^(?:|I )am on (?:|the )homepage$/
+    - Opens homepage.
+    # DrupalFeatureContext::iAmOnHomepage()
+
+ When /^(?:|I )go to (?:|the )homepage$/
+    - Opens homepage.
+    # DrupalFeatureContext::iAmOnHomepage()
+
+Given /^(?:|I )am on "(?P<page>[^"]+)"$/
+    - Opens specified page.
+    # DrupalFeatureContext::visit()
+
+ When /^(?:|I )go to "(?P<page>[^"]+)"$/
+    - Opens specified page.
+    # DrupalFeatureContext::visit()
+
+ When /^(?:|I )reload the page$/
+    - Reloads current page.
+    # DrupalFeatureContext::reload()
+
+ When /^(?:|I )move backward one page$/
+    - Moves backward one page in history.
+    # DrupalFeatureContext::back()
+
+ When /^(?:|I )move forward one page$/
+    - Moves forward one page in history
+    # DrupalFeatureContext::forward()
+
+ When /^(?:|I )follow "(?P<link>(?:[^"]|\\")*)"$/
+    - Clicks link with specified id|title|alt|text.
+    # DrupalFeatureContext::clickLink()
+
+ When /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
+    - Fills in form field with specified id|name|label|value.
+    # DrupalFeatureContext::fillField()
+
+ When /^(?:|I )fill in "(?P<field>(?:[^"]|\\")*)" with:$/
+    - Fills in form field with specified id|name|label|value.
+    # DrupalFeatureContext::fillField()
+
+ When /^(?:|I )fill in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
+    - Fills in form field with specified id|name|label|value.
+    # DrupalFeatureContext::fillField()
+
+ When /^(?:|I )fill in the following:$/
+    - Fills in form fields with provided table.
+    # DrupalFeatureContext::fillFields()
+
+ When /^(?:|I )select "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)"$/
+    - Selects option in select field with specified id|name|label|value.
+    # DrupalFeatureContext::selectOption()
+
+ When /^(?:|I )additionally select "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)"$/
+    - Selects additional option in select field with specified id|name|label|value.
+    # DrupalFeatureContext::additionallySelectOption()
+
+ When /^(?:|I )check "(?P<option>(?:[^"]|\\")*)"$/
+    - Checks checkbox with specified id|name|label|value.
+    # DrupalFeatureContext::checkOption()
+
+ When /^(?:|I )uncheck "(?P<option>(?:[^"]|\\")*)"$/
+    - Unchecks checkbox with specified id|name|label|value.
+    # DrupalFeatureContext::uncheckOption()
+
+ When /^(?:|I )attach the file "(?P[^"]*)" to "(?P<field>(?:[^"]|\\")*)"$/
+    - Attaches file to field with specified id|name|label|value.
+    # DrupalFeatureContext::attachFileToField()
+
+ Then /^(?:|I )should be on "(?P<page>[^"]+)"$/
+    - Checks, that current page PATH is equal to specified.
+    # DrupalFeatureContext::assertPageAddress()
+
+ Then /^(?:|I )should be on (?:|the )homepage$/
+    - Checks, that current page is the homepage.
+    # DrupalFeatureContext::assertHomepage()
+
+ Then /^the (?i)url(?-i) should match (?P<pattern>"(?:[^"]|\\")*")$/
+    - Checks, that current page PATH matches regular expression.
+    # DrupalFeatureContext::assertUrlRegExp()
+
+ Then /^the response status code should be (?P<code>\d+)$/
+    - Checks, that current page response status is equal to specified.
+    # DrupalFeatureContext::assertResponseStatus()
+
+ Then /^the response status code should not be (?P<code>\d+)$/
+    - Checks, that current page response status is not equal to specified.
+    # DrupalFeatureContext::assertResponseStatusIsNot()
+
+ Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)"$/
+    - Checks, that page contains specified text.
+    # DrupalFeatureContext::assertPageContainsText()
+
+ Then /^(?:|I )should not see "(?P<text>(?:[^"]|\\")*)"$/
+    - Checks, that page doesn't contain specified text.
+    # DrupalFeatureContext::assertPageNotContainsText()
+
+ Then /^(?:|I )should see text matching (?P<pattern>"(?:[^"]|\\")*")$/
+    - Checks, that page contains text matching specified pattern.
+    # DrupalFeatureContext::assertPageMatchesText()
+
+ Then /^(?:|I )should not see text matching (?P<pattern>"(?:[^"]|\\")*")$/
+    - Checks, that page doesn't contain text matching specified pattern.
+    # DrupalFeatureContext::assertPageNotMatchesText()
+
+ Then /^the response should contain "(?P<text>(?:[^"]|\\")*)"$/
+    - Checks, that HTML response contains specified string.
+    # DrupalFeatureContext::assertResponseContains()
+
+ Then /^the response should not contain "(?P<text>(?:[^"]|\\")*)"$/
+    - Checks, that HTML response doesn't contain specified string.
+    # DrupalFeatureContext::assertResponseNotContains()
+
+ Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+    - Checks, that element with specified CSS contains specified text.
+    # DrupalFeatureContext::assertElementContainsText()
+
+ Then /^(?:|I )should not see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+    - Checks, that element with specified CSS doesn't contain specified text.
+    # DrupalFeatureContext::assertElementNotContainsText()
+
+ Then /^the "(?P<element>[^"]*)" element should contain "(?P<value>(?:[^"]|\\")*)"$/
+    - Checks, that element with specified CSS contains specified HTML.
+    # DrupalFeatureContext::assertElementContains()
+
+ Then /^the "(?P<element>[^"]*)" element should not contain "(?P<value>(?:[^"]|\\")*)"$/
+    - Checks, that element with specified CSS doesn't contain specified HTML.
+    # DrupalFeatureContext::assertElementNotContains()
+
+ Then /^(?:|I )should see an? "(?P<element>[^"]*)" element$/
+    - Checks, that element with specified CSS exists on page.
+    # DrupalFeatureContext::assertElementOnPage()
+
+ Then /^(?:|I )should not see an? "(?P<element>[^"]*)" element$/
+    - Checks, that element with specified CSS doesn't exist on page.
+    # DrupalFeatureContext::assertElementNotOnPage()
+
+ Then /^the "(?P<field>(?:[^"]|\\")*)" field should contain "(?P<value>(?:[^"]|\\")*)"$/
+    - Checks, that form field with specified id|name|label|value has specified value.
+    # DrupalFeatureContext::assertFieldContains()
+
+ Then /^the "(?P<field>(?:[^"]|\\")*)" field should not contain "(?P<value>(?:[^"]|\\")*)"$/
+    - Checks, that form field with specified id|name|label|value doesn't have specified value.
+    # DrupalFeatureContext::assertFieldNotContains()
+
+ Then /^the "(?P<checkbox>(?:[^"]|\\")*)" checkbox should be checked$/
+    - Checks, that checkbox with specified in|name|label|value is checked.
+    # DrupalFeatureContext::assertCheckboxChecked()
+
+ Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" (?:is|should be) checked$/
+    - Checks, that checkbox with specified in|name|label|value is checked.
+    # DrupalFeatureContext::assertCheckboxChecked()
+
+ Then /^the "(?P<checkbox>(?:[^"]|\\")*)" checkbox should not be checked$/
+    - Checks, that checkbox with specified in|name|label|value is unchecked.
+    # DrupalFeatureContext::assertCheckboxNotChecked()
+
+ Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" should (?:be unchecked|not be checked)$/
+    - Checks, that checkbox with specified in|name|label|value is unchecked.
+    # DrupalFeatureContext::assertCheckboxNotChecked()
+
+ Then /^the checkbox "(?P<checkbox>(?:[^"]|\\")*)" is (?:unchecked|not checked)$/
+    - Checks, that checkbox with specified in|name|label|value is unchecked.
+    # DrupalFeatureContext::assertCheckboxNotChecked()
+
+ Then /^(?:|I )should see (?P<num>\d+) "(?P<element>[^"]*)" elements?$/
+    - Checks, that (?P<num>\d+) CSS elements exist on the page
+    # DrupalFeatureContext::assertNumElements()
+
+ Then /^print current URL$/
+    - Prints current URL to console.
+    # DrupalFeatureContext::printCurrentUrl()
+
+ Then /^print last response$/
+    - Prints last response to console.
+    # DrupalFeatureContext::printLastResponse()
+
+ Then /^show last response$/
+    - Opens last response content in browser.
+    # DrupalFeatureContext::showLastResponse()
+
