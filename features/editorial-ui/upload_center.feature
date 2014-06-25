@@ -1,3 +1,4 @@
+@api
 Feature: Upload Center
   In order to upload only desired images
   As a editor
@@ -15,12 +16,17 @@ Feature: Upload Center
 
 # The background is run for every scenario
 Background:
-  Given I create an "article" entity
-    And I click on "search content" under the "article images" field
-    And I click on "Create and Reference" tab
-    And I click on "Choose files"
-    And I upload an image titled "obama.jpg"
-    And I click on the "Upload" button
+  Given I am logged in as a user with the "administrator" role
+  Given an "article" node with the title "behat: upload center test article"
+    #And I click on "search content" under the "article images" field
+    When I click "search content"
+    # And I click on "Create and Reference" tab
+    When I click "Create and Reference"
+    When I click "Choose files"
+    # And I upload an image titled "obama.jpg"
+    When I attach the file "obama.jpg"
+
+    And I click on the "Open" button
     And The image titled "obama.jpg" is staged
 
 Scenario: Associate staged image with entity
