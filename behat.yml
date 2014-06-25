@@ -104,12 +104,14 @@ dcms-local:
       blackbox: ~
       api_driver: 'drupal'
       drupal:
-        drupal_root: '/home/devadmin/dcms/reference/site'
+        drupal_root: '/mnt/hgfs/alex/dcms/reference/site'
       drush:
         alias: 'ref.local'
 
     # Required by Zombie.js.
     Behat\MinkExtension\Extension:
+      base_url: http://www.reference.dcms-sa.local
+      files_path: '/var/www/project/public/images'
       zombie:
         node_modules_path: '/usr/lib/node_modules/'
         auto_server: false

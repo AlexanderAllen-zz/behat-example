@@ -170,13 +170,57 @@ Given /^The following environments:$/
  Then /^these variables must exist:$/
 ...
 
+# MAKING BEHAT AVAILABLE GLOBALLY
+## Assuming behat is checked out to the host machine, trying to link directly
+to it will cause the virtual machine system to complain about too many symlink levels.
+When doing a symlink to behat, use the shared mount path explicitely:
+
+[root@dcms-developer bin]# ln -s /mnt/hgfs/alex/behat/bin/behat /usr/local/bin/behat
+
+## Now you should be able to call behat from anywhere in the virtual machine.
+
+
+# BEHAT/DRUPAL EXTENSION COMPLAINS ABOUT NOT FINDING YOUR DRUPAL SITE:
+
+[devadmin@dcms-developer behat]$ behat --profile dcms-local
 
 
 
+  [Symfony\Component\Config\Definition\Exception\InvalidConfigurationException]
+  Unrecognized options "base_url" under "behat.extensions.drupal_drupalextension_extension"
+
+## Fix:
+### Verify your 'drupal_root' under 'Drupal\DrupalExtension\Extension' in your
+behat.yml. Just to be safe, I opted to use a direct reference to the VMWare
+mount:
+
+...
+
+    # Required by the behat Drupal Extension.
+    Drupal\DrupalExtension\Extension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/mnt/hgfs/alex/dcms/reference/site'
+      drush:
+        alias: 'ref.local'
+...
+
+### Refer to the behat.yml on this repository for reference.
+### NOTICE: Unlike mentioned in http://dspeak.com/drupalextension/globalinstall.html#set-up-tests
+### - there is no need to move your behat tooling (this repo) to the drupal
+### core location. This allows you to use behat for any number of local installs,
+### or even remote installs.
 
 
 
+# How to call the dcms local test suite:
 
+[devadmin@dcms-developer behat]$ behat --profile dcms-local
+
+
+
+### HAPPY TESTING!!! ###
 
 
 
