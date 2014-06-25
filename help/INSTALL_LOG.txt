@@ -26,6 +26,161 @@ LAST WORKING INSTALLATION
 # <checkout directory>/composer update
 # :
 
+[root@local behat]# composer update
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+  - Installing symfony/finder (2.3.x-dev 8c711d4)
+    Cloning 8c711d4ca7298f7276eb4514a1555e2fd546e63b
 
+  - Installing behat/gherkin (v2.2.9)
+    Loading from cache
+
+  - Installing symfony/process (dev-master 0c367d6)
+    Cloning 0c367d63ab161bfc757e5e882a1d9dde8d344be3
+
+  - Installing symfony/css-selector (dev-master 49bc712)
+    Cloning 49bc712d4c59878aae9aa1b3a471fa48f31a1ed2
+
+  - Installing behat/mink (v1.5.0)
+    Loading from cache
+
+  - Installing behat/mink-zombie-driver (v1.1.0)
+    Loading from cache
+
+  - Installing symfony/dom-crawler (dev-master e9133c6)
+    Cloning e9133c6f7e8a1d547465be1d50f1d99c285ec815
+
+  - Installing symfony/browser-kit (dev-master a0bff3f)
+    Cloning a0bff3f9c4e389641beb8ce0e82524ac9d5e8158
+
+  - Installing behat/mink-browserkit-driver (v1.1.0)
+    Loading from cache
+
+  - Installing ocramius/lazy-map (dev-master 5c77102)
+    Cloning 5c77102e225d225ae2d74d5f2cc488527834b821
+
+  - Installing ocramius/instantiator (1.0.0)
+    Loading from cache
+
+  - Installing phpunit/php-text-template (1.2.0)
+    Loading from cache
+
+  - Installing phpunit/phpunit-mock-objects (2.2.x-dev 84b2756)
+    Cloning 84b27568405dca29de30bc2cdf457e25f5bede7e
+
+  - Installing phpunit/php-timer (1.0.5)
+    Loading from cache
+
+  - Installing phpunit/php-invoker (dev-master 8aa1813)
+    Cloning 8aa18134acfa9e2dc046e36906645f0c83401581
+
+  - Installing sebastian/exporter (dev-master eb54a69)
+    Cloning eb54a69388e5b7ea48561a65588f067fdda0c886
+
+  - Installing sebastian/diff (dev-master ac84cfd)
+    Cloning ac84cfdec593945f36f24074d6ea17d296e86f76
+
+  - Installing sebastian/comparator (dev-master e54a01c)
+    Cloning e54a01c0da1b87db3c5a3c4c5277ddf331da4aef
+
+  - Installing sebastian/environment (dev-master 10c7467)
+    Cloning 10c7467da0622f7848cc5cadc0828c3359254df4
+
+  - Installing sebastian/version (1.0.3)
+    Loading from cache
+
+  - Installing phpunit/php-token-stream (dev-master 955c24b)
+    Cloning 955c24b708f8bfd6a05f303217a8dac3a443d531
+
+  - Installing phpunit/php-file-iterator (1.3.4)
+    Loading from cache
+
+  - Installing symfony/yaml (dev-master b01d366)
+    Cloning b01d366060f33e18fd98b0008c41a01b0d25c95c
+
+  - Installing phpunit/php-code-coverage (2.0.x-dev c8decd0)
+    Cloning c8decd0f7c2098bb281dff36ffcaa5f8a64adc8f
+
+  - Installing phpunit/phpunit (4.2.x-dev 89d7430)
+    Cloning 89d74305f8c4a99e6e57551da512b6b3892bd870
+
+  - Installing symfony/console (dev-master 9a491e7)
+    Cloning 9a491e7983209bf320d40917291c03e856eee947
+
+  - Installing theseer/fdomdocument (dev-master 65ef69e)
+    Cloning 65ef69e10b33f5ad184595d31a718f477d1e448c
+
+  - Installing sebastian/finder-facade (1.1.0)
+    Loading from cache
+
+  - Installing phpunit/phpcov (dev-master 19251da)
+    Cloning 19251da333c6bb79dd28f8f27faae1df06285823
+
+  - Installing symfony/filesystem (dev-master c553594)
+    Cloning c5535943b0d48e5cc54f5bc8088bfc0aefda7f39
+
+  - Installing symfony/config (dev-master 32018f3)
+    Cloning 32018f35de323afd1bffb601f9e760ff3fb6ba05
+
+  - Installing symfony/translation (dev-master 648fe60)
+    Cloning 648fe60e8921358aadb0d50b74339c52691a1763
+
+  - Installing symfony/event-dispatcher (dev-master 7a4f4b4)
+    Cloning 7a4f4b42886f8c2e35acb1071f157a0b8eb1bd39
+
+  - Installing symfony/dependency-injection (dev-master 4040578)
+    Cloning 4040578469625dc4d3c3c70f583bb995c764c434
+
+  - Installing behat/behat (v2.5.0)
+    Downloading: 100%
+
+  - Installing behat/mink-extension (1.3.x-dev b885b94)
+    Cloning b885b9407cba50a954f72c69ed1b2f8d3bc694f8
+
+  - Installing instaclick/php-webdriver (1.0.17)
+    Loading from cache
+
+  - Installing behat/mink-selenium2-driver (v1.1.1)
+    Loading from cache
+
+  - Installing guzzle/common (v3.9.1)
+    Loading from cache
+
+  - Installing guzzle/stream (v3.9.1)
+    Loading from cache
+
+  - Installing guzzle/parser (v3.9.1)
+    Loading from cache
+
+  - Installing guzzle/http (v3.9.1)
+    Loading from cache
+
+  - Installing fabpot/goutte (v1.0.6)
+    Loading from cache
+
+  - Installing behat/mink-goutte-driver (v1.0.9)
+    Loading from cache
+
+  - Installing drupal/drupal-extension (1.0.x-dev fad51a1)
+    Cloning fad51a12a90f5b7db0cab9f972e8415113bf0222
+
+phpunit/php-code-coverage suggests installing ext-xdebug (>=2.2.1)
+symfony/console suggests installing psr/log (For using the console logger)
+symfony/event-dispatcher suggests installing symfony/http-kernel ()
+symfony/dependency-injection suggests installing symfony/proxy-manager-bridge (Generate service proxies to lazy load them)
+behat/behat suggests installing behat/symfony2-extension (for integration with Symfony2 web framework)
+behat/behat suggests installing behat/yii-extension (for integration with Yii web framework)
+Writing lock file
+Generating autoload files
+
+
+[root@local behat]# composer update
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+  - Installing psr/log (dev-master a78d650)
+    Cloning a78d6504ff5d4367497785ab2ade91db3a9fbe11
+
+Writing lock file
+Generating autoload files
 
 

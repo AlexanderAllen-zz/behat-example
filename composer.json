@@ -11,7 +11,8 @@
     "phpunit/php-code-coverage": "*",
     "phpunit/php-invoker": "*",
     "phpunit/phpcov": "*",
-    "drupal/drupal-extension": "*"
+    "drupal/drupal-extension": "*",
+    "psr/log": "*"
   },
   "config": {
     "bin-dir": "bin/"
