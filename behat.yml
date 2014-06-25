@@ -1,7 +1,10 @@
+# @todo incorporate environment variables to avoid hardcoding the test host.
+
 # behat.yml
 default:
   paths:
     features: 'features'
+    bootstrap: 'bootstrap'
   extensions:
     Behat\MinkExtension\Extension:
       #default_session: goutte
@@ -18,7 +21,6 @@ default:
 drupal:
   context:
     parameters:
-      bootstrap: %behat.paths.features%/bootstrap
       drupal_context: DrupalFeatureContext
   extensions:
     Drupal\DrupalExtension\Extension:
@@ -32,7 +34,6 @@ drupal:
 # Separate profile for testing Zombie.js separetely
 zombie:
   paths:
-    bootstrap: %behat.paths.features%/bootstrap_test_zombie
     zombie_context: ZombieFeatureContext
   extensions:
     Behat\MinkExtension\Extension:
@@ -59,11 +60,6 @@ std:
       # @see https://www.drupal.org/project/drupalextension
       drupal_context: DrupalFeatureContext
 
-  # Directory containing context files.
-  # All files found here are automatically autoloaded via Composer.
-  paths:
-    bootstrap: %behat.paths.features%/bootstrap
-
   extensions:
 
     # Required by the behat Drupal Extension.
@@ -74,6 +70,43 @@ std:
         drupal_root: '/root/Sites/standard/htdocs'
       drush:
         alias: 'std'
+
+    # Required by Zombie.js.
+    Behat\MinkExtension\Extension:
+      zombie:
+        node_modules_path: '/usr/lib/node_modules/'
+        auto_server: false
+
+# Combined profile for Drupal and Zombie testing.
+# In official DCMS local environment.
+dcms-local:
+  context:
+
+    # Parameters is passed as an argument to the main context.
+    # Main context is automatically FeatureContext.
+    # Contains custom variables indicating which contexts we want to load for
+    # our tests.
+    parameters:
+
+      # Extends BehatContext, used for front-end testing with Zombie.js.
+      # @see http://zombie.labnotes.org
+      zombie_context: ZombieFeatureContext
+
+      # Extends DrupalContext, used for interacting with Drupal, creating test
+      # content, and verifying application state using different user roles.
+      # @see https://www.drupal.org/project/drupalextension
+      drupal_context: DrupalFeatureContext
+
+  extensions:
+
+    # Required by the behat Drupal Extension.
+    Drupal\DrupalExtension\Extension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/home/devadmin/dcms/reference/site'
+      drush:
+        alias: 'ref.local'
 
     # Required by Zombie.js.
     Behat\MinkExtension\Extension:

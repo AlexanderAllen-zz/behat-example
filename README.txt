@@ -62,9 +62,12 @@ Usage:
   steps are available to your test suites.
 
 Reference/Bibliography:
-- DRUPALCON AUSTIN PRESENTATION
-  # Please see this first if you have never work with Behat in order to get
+
+- DRUPALCON AUSTIN 2014 PRESENTATION
+
+  # Please watch this first if you have never worked with Behat in order to get
   # familiarized!
+
   https://austin2014.drupal.org/session/user-personas-testing-project-managers-journey-towards-behat
 
 - Gherkin syntax:
