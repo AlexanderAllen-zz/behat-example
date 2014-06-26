@@ -18,7 +18,8 @@ use Behat\Behat\Context;
 // Hooks
 use Behat\Behat\Event\SuiteEvent,
     Behat\Behat\Event\ScenarioEvent,
-    Behat\Behat\Event\FeatureEvent;
+    Behat\Behat\Event\FeatureEvent,
+    Behat\Behat\Event\StepEvent;
 
 //
 // Require 3rd-party libraries here:
@@ -54,6 +55,9 @@ class FeatureContext extends BehatContext {
       if (array_key_exists('drupal_context', $parameters)) {
         $this->useContext('drupal_context', new $parameters['drupal_context']($parameters));
       }
+
+      $this->ouput_directory = $parameters['output_directory'];
+      $this->behat_directory = $parameters['behat_directory'];
     }
   }
 
@@ -63,7 +67,7 @@ class FeatureContext extends BehatContext {
    * @BeforeSuite @ads
    */
   public static function setup(SuiteEvent $event) {
-    $test = null;
+    // Hook stub.
   }
 
   /**
@@ -72,8 +76,7 @@ class FeatureContext extends BehatContext {
    * @BeforeFeature @ads
    */
   public static function setupFeature(FeatureEvent $event) {
-    $test = null;
-    // $event->getFeature(), getContextParameters()
+    // Hook stub.
   }
 
   /**
@@ -81,11 +84,24 @@ class FeatureContext extends BehatContext {
    *
    * @BeforeScenario @zombie,@ads
    */
-  #public static function prepare(ScenarioEvent $event) {
-  #  $test = null;
-    // $context = $event->getContext();
-    // $context->setParentContext($context->getSubcontext('zombie_context'));
-  #  $test = null;
-  #}
+  public static function prepare(ScenarioEvent $event) {
+    // Hook stub.
+  }
+
+  /**
+   * Implements AfterStep hook.
+   *
+   * @AfterStep
+   */
+  public function after(StepEvent $event) {
+    // Intercept failed steps and take a screenshot of them.
+    if ($event->getResult() != StepEvent::PASSED) {
+
+      $drupal = $this->getSubcontext('drupal_context');
+      $html = $drupal->getMink()->getSession()->getPage()->getContent();
+      $step = preg_replace('([^\w\s\d\-_~,;:\[\]\(\].]|[\.]{2,})', '', $event->getStep()->getText());
+      file_put_contents($this->ouput_directory . '/' . $step . '-' . time() .'.html', $html);
+    }
+  }
 
 }

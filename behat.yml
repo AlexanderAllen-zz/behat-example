@@ -97,6 +97,11 @@ dcms-local:
       # @see https://www.drupal.org/project/drupalextension
       drupal_context: DrupalFeatureContext
 
+      # Custom variable: path for failed steps
+      output_directory: "/mnt/hgfs/alex/behat_output"
+
+      behat_directory: "/mnt/hgfs/alex/behat"
+
   extensions:
 
     # Required by the behat Drupal Extension.
