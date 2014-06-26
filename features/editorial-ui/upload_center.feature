@@ -17,48 +17,91 @@ Feature: Upload Center
 # The background is run for every scenario
 Background:
   Given I am logged in as a user with the "administrator" role
-  Given an "article" node with the title "behat: upload center test article"
-    #And I click on "search content" under the "article images" field
-    When I click "search content"
-    # And I click on "Create and Reference" tab
-    When I click "Create and Reference"
-    When I click "Choose files"
-    # And I upload an image titled "obama.jpg"
-    # @todo will need custom step here, research upload form interation
-  # When I attach the file "imgs/looks.jpg" to "ImageID"
-    When I attach the file "obama.jpg" to "multiUpload"
-    #And I click on the "Open" button
-    When I press the "submitHandler" button
 
-    #And The image titled "obama.jpg" is staged
-    Then the "title" field should contain "obama.jpg"
-    #Checks, that form field with specified id|name|label|value has specified value.
+  #Given /^I am viewing my "(?P<type>[^"]*)" node with the title "(?P<title>[^"]*)"$/
+
+    Given I am viewing my "article" node with the title "behat: upload center test article"
+
+      When I follow "Edit"
+
+        When I click "search content"
+
+          # And I click on "Create and Reference" tab
+          When I click "Create and reference"
+
+            # Emulates clicking on "Choose files" and uploading an image.
+            When I attach the file "obama.jpg" to "multiUpload"
+
+              # Click the "Upload" button.
+              #When I press the "submitHandler" button
+
+             # When I click "Save"
+
+              When I click on XPath "//div[@id='control-panel']/descendant::button[@id='save' and @class='form-submit']"
+
+              #When I follow "Save"
+
+
+
+
+# Goutte at this point is not being able to handle modals very well =(
+#"    When I click "Save"                                                                     # DrupalFeatureContext::assertClick()
+#Link with id|title|alt|text "Save" not found.
+
+          # TODO FIX THIS ONE
+ # Then /^the "(?P<element>[^"]*)" element should not contain "(?P<value>(?:[^"]|\\")*)"$/
+#- Checks, that element with specified CSS doesn't contain specified HTML.
+
+#  Then /^the "(?P<field>(?:[^"]|\\")*)" field should contain "(?P<value>(?:[^"]|\\")*)"$/
+
+#/^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+
+ # CUSOTM CLICK WITHOUT FORMs
+
+          #    Then I should see "obama.jpg" in the "input.text-field.title" element
+
+
+  #  Then /^the "(?P<element>[^"]*)" element should contain "(?P<value>(?:[^"]|\\")*)"$/
+  #Then the ".text-field.title" element should contain "obama.jpg"
+
+
+ #Then the "input.text-field.title" field should contain "obama"
+
+
+#- Checks, that form field with specified id|name|label|value has specified value.
+
+              #And The image titled "obama.jpg" is staged
+             # Then the "title" field should contain "obama.jpg"
+              #Checks, that form field with specified id|name|label|value has specified value.
 
 
 Scenario: Associate staged image with entity
-  When I click on the "Save" button
+  #When I click on the "Save" button
+  #When I click "Save"
   # Then the upload modal should: close | show uploaded images
   # And I click on the "close" or "save" button
-  Then The "obama.jpg" image should be associated with the entity
 
-Scenario: Delete staged image without associating it to an entity
-  When I click on the "Delete" button
-  Then The upload center modal should show up
+  #Then The "obama.jpg" image should be associated with the entity
+  #Then the "title" field should contain "obama.jpg"
+    #Checks, that form field with specified id|name|label|value has specified value.
 
-Scenario: Staged images do not show up on search when cancelled
-  Given I click on the "Delete" button
-  And The upload center modal shows up
-  When I click on the "reference" tab
-  Then The cancelled image should not show up on search
+  #Then /^(?:|I )should see (?P<num>\d+) "(?P<element>[^"]*)" elements?$/
+  #- Checks, that (?P<num>\d+) CSS elements exist on the page
+  #Then I should see 1 ".entityreferencesearch-widget .entityreferencesearch-widget-image img" elements
 
-Scenario: Staged images do not show up on search when cancelled
-  Given I click on the "Delete" button
-  And The upload center modal shows up
-  And I click on the "Close" button
-  Then The cancelled image should not be associated with an entity
+  #Then the ".entityreferencesearch-widget-title" element should contain "obama.jpg"
 
 
 
-Scenario: Upload image via drag and drop
-  # @todo currently not working
-  # @todo specify test case
+  #Then a match is found for xpath query "(descendant-or-self::div[@class='entityreferencesearch-widget clearfix']/descendant::div[@class='entityreferencesearch-widget-title'])[1]/.[text() = 'obama.jpg']"
+
+  Then I should see the text "obama.jpg"
+
+
+  #(descendant-or-self::div[@class='entityreferencesearch-widget clearfix']/descendant::div[@class='entityreferencesearch-widget-title'])[1]/.[text() = 'obama.jpg']
+
+
+  #Then the xpath element "foo" should contain "bar"
+
+
+
