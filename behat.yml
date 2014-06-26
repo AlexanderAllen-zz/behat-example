@@ -111,7 +111,7 @@ dcms-local:
     # Required by Zombie.js.
     Behat\MinkExtension\Extension:
       base_url: http://www.reference.dcms-sa.local
-      files_path: '/var/www/project/public/images'
+      files_path: '/mnt/hgfs/alex/dcms/reference/site/sites/default/files'
       zombie:
         node_modules_path: '/usr/lib/node_modules/'
         auto_server: false
