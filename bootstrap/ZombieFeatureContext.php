@@ -33,6 +33,7 @@ class ZombieFeatureContext extends BehatContext {
 
   // Singleton for mink.
   static private $_mink = NULL;
+  static private $_driver = NULL;
 
   /**
    * Initializes context.
@@ -43,14 +44,19 @@ class ZombieFeatureContext extends BehatContext {
    *   context parameters (set them up through behat.yml)
    */
   public function __construct(array $parameters) {
-    $host = '127.0.0.1';
-    $port  = '8124';
-    $node_binary = '/usr/bin/node';
-
-    $this->server = new ZombieServer($host, $port, $node_binary);
-    $this->driver = new ZombieDriver($this->server);
 
     $this->mink = $this->getMink();
+  }
+
+  public function getDriver() {
+    if (is_null(self::$_driver)) {
+      $host = '127.0.0.1';
+      $port  = '8121';
+      $node_binary = '/usr/bin/node';
+      $server = new ZombieServer($host, $port, $node_binary);
+      self::$_driver = new ZombieDriver($server);
+    }
+    return self::$_driver;
   }
 
   /**
@@ -69,10 +75,12 @@ class ZombieFeatureContext extends BehatContext {
   /**
    * Manages Mink sessions, one at a time.
    */
-  protected function createSession($name) {
+  protected function createSession($name, $reset = FALSE) {
 
     $default = $this->mink->getDefaultSessionName();
-    if ($default && $this->mink->isSessionStarted($default)) {
+
+    // Reset session.
+    if ($reset && $default && $this->mink->isSessionStarted($default)) {
       $session = $this->mink->getSession();
       if ($session->isStarted()) {
         $session->stop();
@@ -80,10 +88,17 @@ class ZombieFeatureContext extends BehatContext {
       else {
         $session->reset();
       }
+    } else {
+      // By default start session.
+      $session = new Session($this->getDriver());
+      if (!$session->isStarted()) {
+        $session->start();
+      }
     }
 
-    $this->mink->registerSession($name, new Session($this->driver));
+    $this->mink->registerSession($name, $session);
     $this->mink->setDefaultSessionName($name);
+    return $session;
   }
 
   /**
@@ -238,6 +253,39 @@ JS;
         $this->assertThatJavascriptVariableExists($varhash['variable']);
       }
     }
+  }
+
+  /**
+   * @Given /^I am viewing the background node$/
+   */
+  public function iAmViewingTheBackgroundNode() {
+
+    $drupal = $this->getMainContext()->getSubcontext('drupal_context');
+
+    #$data = $this->getMainContext()->getContextData(); #current_node
+
+    $session = $this->createSession('default');
+    $path = $drupal->locatePath('node/' . $drupal->nodes[0]->nid);
+    $session->visit($path);
+
+    $this->printDebug(print_r($session->getCurrentUrl(), TRUE));
+    $this->printDebug(print_r($session->getResponseHeaders(), TRUE));
+    $this->printDebug($session->evaluateScript('browser.statusCode'));
+
+  }
+
+  /**
+   * @When /^I attach the file "([^"]*)"$/
+   */
+  public function iAttachTheFile($arg1) {
+    throw new PendingException();
+  }
+
+  /**
+   * @When /^I click on "([^"]*)"$/
+   */
+  public function iClickOn($arg1) {
+    throw new PendingException();
   }
 
   /**

@@ -37,6 +37,13 @@ use Behat\Mink\Exception\ElementNotFoundException;
 class FeatureContext extends BehatContext {
 
   /**
+   * Singleton repository for sharing data between contexts.
+   *
+   * @var stdClass A free-form generic class.
+   */
+  private static $_contextData;
+
+  /**
    * Initializes context.
    *
    * Every scenario gets it's own context object.
@@ -62,6 +69,25 @@ class FeatureContext extends BehatContext {
       $this->ouput_directory = $parameters['output_directory'];
       $this->behat_directory = $parameters['behat_directory'];
     }
+  }
+
+  /**
+   * Creates a persistent singleton array used for inter-context communication.
+   *
+   * @return array
+   *   Returns a singleton array.
+   */
+  public function getContextData() {
+    if (is_null(self::$_contextData)) {
+      self::$_contextData = new stdClass();
+      self::$_contextData->nodes = array();
+    }
+    return self::$_contextData;
+  }
+
+  public function setContextData($name = '', $value = '') {
+    $data = self::getContextData();
+    $data->{$name} = $value;
   }
 
   /**
@@ -211,6 +237,8 @@ class FeatureContext extends BehatContext {
         $form->remove($name);
       }
     }
+
+    # browser.cookies().set("session", "123");
 
 
     $client->submit($form);

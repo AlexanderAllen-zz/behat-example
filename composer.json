@@ -12,7 +12,8 @@
     "phpunit/php-invoker": "*",
     "phpunit/phpcov": "*",
     "drupal/drupal-extension": "*",
-    "psr/log": "*"
+    "psr/log": "*",
+    "behat/mink-zombie-driver": "*"
   },
   "config": {
     "bin-dir": "bin/"

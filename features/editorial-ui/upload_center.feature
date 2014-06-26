@@ -16,30 +16,35 @@ Feature: Upload Center
 
 # The background is run for every scenario
 Background:
+  Given I am not logged in
+ # Given I am logged in as "devadmin" # No user with devadmin name is registered with the driver.
   Given I am logged in as a user with the "administrator" role
-
-  #Given /^I am viewing my "(?P<type>[^"]*)" node with the title "(?P<title>[^"]*)"$/
-
-    Given I am viewing my "article" node with the title "behat: upload center test article"
-
-      When I follow "Edit"
-
-        When I click "search content"
-
+    Given I am viewing my "article" node with the timestamped title "behat: upload center test article"
+   #   When I follow "Edit"
+   #     When I click "search content"
           # And I click on "Create and Reference" tab
-          When I click "Create and reference"
+     #     When I click "Create and reference"
 
             # Emulates clicking on "Choose files" and uploading an image.
-            When I attach the file "obama.jpg" to "multiUpload"
+       #     When I attach the file "obama.jpg" to "multiUpload"
 
               # Click the "Upload" button.
               #When I press the "submitHandler" button
 
              # When I click "Save"
 
-              When I click on XPath "//div[@id='control-panel']/descendant::button[@id='save' and @class='form-submit']"
+        #      When I click on XPath "//div[@id='control-panel']/descendant::button[@id='save' and @class='form-submit']"
 
               #When I follow "Save"
+
+@mink:zombie
+Scenario: Associate staged image with entity
+  Given I am viewing the background node
+ # When I follow "Edit"
+ # When I click "search content"
+  #When I click "Create and reference"
+  #When I attach the file "obama.jpg"
+  #When I click on "Save"
 
 
 
@@ -75,7 +80,7 @@ Background:
               #Checks, that form field with specified id|name|label|value has specified value.
 
 
-Scenario: Associate staged image with entity
+#Scenario: Associate staged image with entity
   #When I click on the "Save" button
   #When I click "Save"
   # Then the upload modal should: close | show uploaded images
@@ -95,7 +100,7 @@ Scenario: Associate staged image with entity
 
   #Then a match is found for xpath query "(descendant-or-self::div[@class='entityreferencesearch-widget clearfix']/descendant::div[@class='entityreferencesearch-widget-title'])[1]/.[text() = 'obama.jpg']"
 
-  Then I should see the text "obama.jpg"
+ # Then I should see the text "obama.jpg"
 
 
   #(descendant-or-self::div[@class='entityreferencesearch-widget clearfix']/descendant::div[@class='entityreferencesearch-widget-title'])[1]/.[text() = 'obama.jpg']

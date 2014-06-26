@@ -14,6 +14,10 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
   Behat\Gherkin\Node\TableNode;
 
+use Behat\Behat\Context\Step\Given;
+use Behat\Behat\Context\Step\When;
+use Behat\Behat\Context\Step\Then;
+
 /**
  * Features context.
  */
@@ -28,7 +32,17 @@ class DrupalFeatureContext extends Drupal\DrupalExtension\Context\DrupalContext 
    *   context parameters (set them up through behat.yml)
    */
   public function __construct(array $parameters) {
+    #$this->persist();
+  }
 
+  public function persist() {
+    $main = $this->getMainContext();
+
+    $drupal = $this->getMainContext()->getSubcontext('drupal_context');
+    $data = $this->getMainContext()->getContextData();
+    $data->user = $drupal->user;
+    $data->users = $drupal->users;
+    $data->_drupal = $drupal;
   }
 
   /**
@@ -60,7 +74,43 @@ class DrupalFeatureContext extends Drupal\DrupalExtension\Context\DrupalContext 
         PHPUnit_Framework_Assert::fail("Variable $name not found.");
       }
     }
+  }
 
+  /**
+   * @Given /^I am viewing my "(?P<type>[^"]*)" node with the timestamped title "(?P<title>[^"]*)"$/
+   */
+  public function createMyTimeStampedNode($type, $title) {
+
+    // Attach unique timestamp to nodes, then register title so front-end
+    // drivers have access to it.
+    $title = $title . ' ' . time();
+    $data = $this->getMainContext()->getContextData();
+    $data->nodes[] = $title;
+    #$data->session = substr(session_name(), 1);
+
+    #$this->getSession()->getCookie(substr(session_name(), 1));
+
+    #$this->getMainContext()->setContextData('current_node', $title);
+
+    // Contexts are re-instantiated between scenarios, save the currently logged
+    // in users' credentials to persistent cache before the drupal context
+    // gets wiped.
+    // @todo move this to a hook instead of a step.
+    /*$drupal = $this->getMainContext()->getSubcontext('drupal_context');
+    $data = $this->getMainContext()->getContextData();
+    $data->user = $drupal->user;
+    $data->users = $drupal->users;
+    $data->_drupal = $drupal;
+    */
+
+    #$fed_mink = $this->getMainContext()->getSubcontext('zombie_context')->getMink();
+    #$fed_session = $fed_mink->getSession();
+
+
+
+    # Given /^I am viewing my "(?P<type>[^"]*)" node with the title "(?P<title>[^"]*)"$/
+    # DrupalFeatureContext::createMyNode()
+    return new Given("I am viewing my \"$type\" node with the title \"$title\"");
   }
 
   /**
@@ -71,3 +121,5 @@ class DrupalFeatureContext extends Drupal\DrupalExtension\Context\DrupalContext 
   }
 
 }
+
+# $_COOKIE

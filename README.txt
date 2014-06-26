@@ -40,6 +40,9 @@ Installation:
 - Run composer update. This should all install all the dependencies listed in
   composer.json.
 
+Starting a test suite:
+- behat --ansi --profile dcms-local
+
 Usage:
 - Feature files are located in the "features" directory.
 - The "features" directory is scanned recursively by behat - you can organize
